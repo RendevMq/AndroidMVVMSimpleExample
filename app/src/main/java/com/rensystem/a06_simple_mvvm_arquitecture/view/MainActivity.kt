@@ -9,22 +9,26 @@ import com.rensystem.a06_simple_mvvm_arquitecture.viewmodel.QuoteViewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding:ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
-    //esto que permite? se que usa una libreria..pero que es lo que esta simplicando?
-    private val quoteViewModel : QuoteViewModel by viewModels()
+    // Delegado viewModels que crea y vincula el ViewModel a la actividad
+    private val quoteViewModel: QuoteViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        quoteViewModel.quoteModel.observe(this, Observer {
-            //Cuando el livedata observe un cambio se ejecuta lo de aca
-            binding.tvQuote.text = it.quote
-            binding.tvAuthor.text = it.author
-        })
+        //Oservamos los cambios en LiveData y actualizamos la UI
+        quoteViewModel.quoteModel.observe(this) { quote ->
+            // Si la cita no es nula, actualizamos la UI con los datos
+            quote?.let {
+                binding.tvQuote.text = it.quote
+                binding.tvAuthor.text = it.author
+            }
+        }
 
+        // Al hacer clic en el contenedor, generamos una nueva cita aleatoria
         binding.viewContainer.setOnClickListener {
             quoteViewModel.randomQuote()
         }
