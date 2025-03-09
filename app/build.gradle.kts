@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
+    alias(libs.plugins.daggerhiltandroid)
 }
 
 android {
@@ -55,6 +57,11 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofitgson) // Convertidor Gson para Retrofit
     implementation(libs.okhttp)
+
+    implementation(libs.daggerhiltandroid)
+    kapt(libs.daggerhiltcompiler)
+
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
