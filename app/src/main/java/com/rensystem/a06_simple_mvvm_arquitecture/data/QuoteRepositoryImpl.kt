@@ -4,6 +4,7 @@ import com.rensystem.a06_simple_mvvm_arquitecture.data.mock.MockQuoteService
 import com.rensystem.a06_simple_mvvm_arquitecture.data.model.QuoteModel
 import com.rensystem.a06_simple_mvvm_arquitecture.data.model.QuoteProvider
 import com.rensystem.a06_simple_mvvm_arquitecture.data.network.QuoteService
+import com.rensystem.a06_simple_mvvm_arquitecture.domain.QuoteRepository
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -19,13 +20,13 @@ import javax.inject.Singleton
  */
 
 @Singleton
-class QuoteRepository @Inject constructor(
+class QuoteRepositoryImpl @Inject constructor(
     private val api: QuoteService,
     private val mockApi:MockQuoteService,
     private  val quoteProvider: QuoteProvider
-){
+) : QuoteRepository{
 
-    suspend fun getAllQuotes(): List<QuoteModel> {
+    override suspend fun getAllQuotes(): List<QuoteModel> {
         // Verificamos si ya existen citas en QuoteProvider
         if (quoteProvider.quotes.isNotEmpty()) {
             // Si hay citas en QuoteProvider, las devolvemos directamente sin hacer más peticiones

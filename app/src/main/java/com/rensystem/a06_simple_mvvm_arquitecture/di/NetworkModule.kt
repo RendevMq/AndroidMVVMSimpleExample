@@ -1,6 +1,11 @@
 package com.rensystem.a06_simple_mvvm_arquitecture.di
 
+import com.rensystem.a06_simple_mvvm_arquitecture.data.QuoteRepositoryImpl
+import com.rensystem.a06_simple_mvvm_arquitecture.data.mock.MockQuoteService
+import com.rensystem.a06_simple_mvvm_arquitecture.data.model.QuoteProvider
 import com.rensystem.a06_simple_mvvm_arquitecture.data.network.QuoteApiClient
+import com.rensystem.a06_simple_mvvm_arquitecture.data.network.QuoteService
+import com.rensystem.a06_simple_mvvm_arquitecture.domain.QuoteRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,8 +38,21 @@ object NetworkModule {
     //proveemos la interface QUOTEAPICLIENT
     @Singleton
     @Provides
-    fun provideQuoteApiClient(retrofit: Retrofit) : QuoteApiClient{
+    fun provideQuoteApiClient(retrofit: Retrofit): QuoteApiClient {
         return retrofit.create(QuoteApiClient::class.java)
+    }
+
+    //==(↓)(↓)(↓) Nuevos providers, luego se separar el QuoteRepository en -> QuoteRepository y QuoteRepositoryImpl (↓)(↓)(↓)===//
+
+    @Singleton
+    @Provides
+    fun provideRepository(
+        api: QuoteService,
+        mockApi: MockQuoteService,
+        quoteProvider: QuoteProvider
+
+    ): QuoteRepository {
+        return QuoteRepositoryImpl(api,mockApi,quoteProvider)
     }
 
 }

@@ -1,7 +1,7 @@
 package com.rensystem.a06_simple_mvvm_arquitecture.domain.usecase
 
-import com.rensystem.a06_simple_mvvm_arquitecture.data.QuoteRepository
 import com.rensystem.a06_simple_mvvm_arquitecture.data.model.QuoteModel
+import com.rensystem.a06_simple_mvvm_arquitecture.domain.QuoteRepository
 import javax.inject.Inject
 
 class GetQuotesUseCase @Inject constructor(
