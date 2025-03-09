@@ -7,8 +7,10 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.rensystem.a06_simple_mvvm_arquitecture.databinding.ActivityMainBinding
 import com.rensystem.a06_simple_mvvm_arquitecture.ui.viewmodel.QuoteViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

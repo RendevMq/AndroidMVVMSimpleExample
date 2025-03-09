@@ -5,11 +5,17 @@ import androidx.lifecycle.viewModelScope
 import com.rensystem.a06_simple_mvvm_arquitecture.data.model.QuoteModel
 import com.rensystem.a06_simple_mvvm_arquitecture.domain.usecase.GetQuotesUseCase
 import com.rensystem.a06_simple_mvvm_arquitecture.domain.usecase.GetRandomQuoteUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class QuoteViewModel : ViewModel() {
+@HiltViewModel
+class QuoteViewModel @Inject constructor(
+    private val getQuotesUseCase:GetQuotesUseCase,
+    private val getRandomQuoteUseCase:GetRandomQuoteUseCase
+) : ViewModel() {
 
     //Se crea un StateFlow que contiene el QuoteModel inicializado como null
     private val _quoteModel = MutableStateFlow<QuoteModel?>(null)
@@ -20,9 +26,6 @@ class QuoteViewModel : ViewModel() {
 
     private val _isLoading = MutableStateFlow<Boolean>(true)
     val isLoading: StateFlow<Boolean> = _isLoading
-
-    val getQuotesUseCase = GetQuotesUseCase()
-    val getRandomQuoteUseCase = GetRandomQuoteUseCase()
 
     fun onCreateMe() {
 

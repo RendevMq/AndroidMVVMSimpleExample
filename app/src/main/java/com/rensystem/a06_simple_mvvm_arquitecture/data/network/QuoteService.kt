@@ -6,6 +6,7 @@ import com.rensystem.a06_simple_mvvm_arquitecture.data.model.QuoteModel
 import com.rensystem.a06_simple_mvvm_arquitecture.data.model.QuoteProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 /*
  * Clase encargada de gestionar la obtención de las citas desde una fuente remota (API).
@@ -16,14 +17,16 @@ import kotlinx.coroutines.withContext
  * En caso de que se necesite cambiar la implementación de Retrofit o el cliente de red, esta clase es el único lugar donde se realizarían los cambios,
  * evitando modificar el resto del proyecto, lo que mejora la mantenibilidad y flexibilidad del proyecto.
  */
-class QuoteService {
-    private val retrofitQuoteApiClient = RetrofitHelper.getRetrofit().create(QuoteApiClient::class.java)
+class QuoteService @Inject constructor(
+    private val quoteApiClient:QuoteApiClient
+) {
+
     suspend fun getQuotes(): List<QuoteModel> {
 
         return withContext(Dispatchers.IO) {
             try {
                 //Realizamos la llamada a la API
-                val response = retrofitQuoteApiClient.getAllQuotes()
+                val response = quoteApiClient.getAllQuotes()
                 //Verificamos si la resuesta fue exitosa
                 if(response.isSuccessful && response.body()!=null){
                     Log.i("Renato" , "Success quotes: ${response.code()}")
