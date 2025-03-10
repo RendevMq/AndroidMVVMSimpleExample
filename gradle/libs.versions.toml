@@ -14,6 +14,12 @@ crrviewmodelktx = "2.8.7"
 livedataa = "2.8.7"
 fragmentt = "1.8.6"
 activitityy = "1.10.1"
+retrofit = "2.11.0"
+okhttp = "4.9.1"
+
+daggerHiltVersion = "2.49"
+
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -37,9 +43,20 @@ fragmentt = {group = "androidx.fragment", name = "fragment-ktx", version.ref = "
 #Activity
 activitityy= {group = "androidx.activity", name = "activity-ktx", version.ref = "activitityy"}
 
+#Retrofit
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofitgson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+
+#daggerhilt
+daggerhiltandroid= { group = "com.google.dagger",name = "hilt-android", version.ref = "daggerHiltVersion" }
+daggerhiltcompiler= { group = "com.google.dagger",name = "hilt-compiler", version.ref = "daggerHiltVersion" }
 
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+#============PLG: DAGGER : INYECCION DE DEPENDENCIAS============#
+daggerhiltandroid = { id = "com.google.dagger.hilt.android", version.ref = "daggerHiltVersion" }
+
 
