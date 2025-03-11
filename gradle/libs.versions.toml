@@ -19,7 +19,7 @@ okhttp = "4.9.1"
 
 daggerHiltVersion = "2.49"
 
-room_version = "2.5.0"
+room_version = "2.6.1"
 
 
 

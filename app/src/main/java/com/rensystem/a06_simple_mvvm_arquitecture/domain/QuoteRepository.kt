@@ -1,6 +1,7 @@
 package com.rensystem.a06_simple_mvvm_arquitecture.domain
 
-import com.rensystem.a06_simple_mvvm_arquitecture.data.model.QuoteModel
+import com.rensystem.a06_simple_mvvm_arquitecture.data.database.entities.QuoteEntity
+import com.rensystem.a06_simple_mvvm_arquitecture.domain.model.Quote
 
 /*
  * ACTUAL SITUACIÓN Y FUTURA MEJORA:
@@ -14,5 +15,8 @@ import com.rensystem.a06_simple_mvvm_arquitecture.data.model.QuoteModel
  */
 
 interface QuoteRepository {
-    suspend fun getAllQuotes(): List<QuoteModel>
+    suspend fun getAllQuotesFromApi(): List<Quote>
+    suspend fun getAllQuotesFromDatabase(): List<Quote>
+    suspend fun insertQuotes(quotes:List<QuoteEntity>)
+    suspend fun clearQuotes()
 }

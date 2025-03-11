@@ -1,6 +1,7 @@
 package com.rensystem.a06_simple_mvvm_arquitecture.di
 
 import com.rensystem.a06_simple_mvvm_arquitecture.data.QuoteRepositoryImpl
+import com.rensystem.a06_simple_mvvm_arquitecture.data.database.dao.QuoteDao
 import com.rensystem.a06_simple_mvvm_arquitecture.data.mock.MockQuoteService
 import com.rensystem.a06_simple_mvvm_arquitecture.data.model.QuoteProvider
 import com.rensystem.a06_simple_mvvm_arquitecture.data.network.QuoteApiClient
@@ -48,11 +49,10 @@ object NetworkModule {
     @Provides
     fun provideRepository(
         api: QuoteService,
-        mockApi: MockQuoteService,
-        quoteProvider: QuoteProvider
+        quoteDao: QuoteDao
 
     ): QuoteRepository {
-        return QuoteRepositoryImpl(api,mockApi,quoteProvider)
+        return QuoteRepositoryImpl(api,quoteDao)
     }
 
 }
