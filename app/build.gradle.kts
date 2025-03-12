@@ -61,7 +61,8 @@ dependencies {
     implementation(libs.daggerhiltandroid)
     kapt(libs.daggerhiltcompiler)
 
-
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

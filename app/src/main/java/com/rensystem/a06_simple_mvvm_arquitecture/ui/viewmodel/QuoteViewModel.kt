@@ -2,7 +2,7 @@ package com.rensystem.a06_simple_mvvm_arquitecture.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rensystem.a06_simple_mvvm_arquitecture.data.model.QuoteModel
+import com.rensystem.a06_simple_mvvm_arquitecture.domain.model.Quote
 import com.rensystem.a06_simple_mvvm_arquitecture.domain.usecase.GetQuotesUseCase
 import com.rensystem.a06_simple_mvvm_arquitecture.domain.usecase.GetRandomQuoteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,11 +18,11 @@ class QuoteViewModel @Inject constructor(
 ) : ViewModel() {
 
     //Se crea un StateFlow que contiene el QuoteModel inicializado como null
-    private val _quoteModel = MutableStateFlow<QuoteModel?>(null)
+    private val _quoteModel = MutableStateFlow<Quote?>(null)
 
     // Exposición del StateFlow como un StateFlow inmutable
     // permitiendo que otros componentes solo lean el valor y no lo modifiquen directamente.
-    val quoteModel: StateFlow<QuoteModel?> = _quoteModel
+    val quoteModel: StateFlow<Quote?> = _quoteModel
 
     private val _isLoading = MutableStateFlow<Boolean>(true)
     val isLoading: StateFlow<Boolean> = _isLoading
@@ -42,8 +42,6 @@ class QuoteViewModel @Inject constructor(
 
     // Función que genera una nueva cita aleatoria y actualiza el valor de _quoteModel.
     fun randomQuote() {
-        //val currentQuote = QuoteProvider.random()
-        //_quoteModel.value = currentQuote // Actualiza el valor de _quoteModel con la nueva cita.
         viewModelScope.launch {
             _isLoading.value = true
             val quote = getRandomQuoteUseCase()
