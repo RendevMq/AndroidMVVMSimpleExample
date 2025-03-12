@@ -11,7 +11,16 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-
+/*
+ * Este objeto `RoomModule` es un módulo de Dagger/Hilt que configura e inyecta las dependencias relacionadas con Room.
+ * Se encarga de proporcionar las instancias de la base de datos (`QuoteDatabase`) y el DAO (`QuoteDao`).
+ *
+ * Utilizando Hilt para la inyección de dependencias, se asegura que la base de datos y el DAO se creen de manera eficiente y compartan la misma instancia en toda la aplicación.
+ *
+ * - `@Singleton` asegura que solo se cree una instancia de la base de datos en toda la aplicación.
+ * - `@Provides` indica cómo se deben crear las dependencias de Room.
+ * - `@InstallIn(SingletonComponent::class)` define el alcance de la inyección para la aplicación completa.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object RoomModule {

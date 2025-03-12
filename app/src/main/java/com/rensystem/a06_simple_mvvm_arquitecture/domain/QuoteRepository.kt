@@ -17,6 +17,7 @@ import com.rensystem.a06_simple_mvvm_arquitecture.domain.model.Quote
 interface QuoteRepository {
     suspend fun getAllQuotesFromApi(): List<Quote>
     suspend fun getAllQuotesFromDatabase(): List<Quote>
+    suspend fun getAllQuotesFromMock():List<Quote>
     suspend fun insertQuotes(quotes:List<QuoteEntity>)
     suspend fun clearQuotes()
 }

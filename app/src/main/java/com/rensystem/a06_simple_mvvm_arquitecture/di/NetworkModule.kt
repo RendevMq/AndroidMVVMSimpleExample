@@ -49,10 +49,10 @@ object NetworkModule {
     @Provides
     fun provideRepository(
         api: QuoteService,
+        mock:MockQuoteService,
         quoteDao: QuoteDao
-
     ): QuoteRepository {
-        return QuoteRepositoryImpl(api,quoteDao)
+        return QuoteRepositoryImpl(api,mock,quoteDao)
     }
 
 }
