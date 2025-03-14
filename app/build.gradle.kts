@@ -65,6 +65,13 @@ dependencies {
     kapt(libs.room.compiler)
 
     testImplementation(libs.junit)
+    testImplementation(libs.kotlintest.runner)
+    testImplementation(libs.mockk)
+    implementation(libs.coroutiness)
+    testImplementation(libs.coroutiness.test)
+    testImplementation(libs.core.testing)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }
