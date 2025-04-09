@@ -44,7 +44,6 @@ object NetworkModule {
     }
 
     //==(↓)(↓)(↓) Nuevos providers, luego se separar el QuoteRepository en -> QuoteRepository y QuoteRepositoryImpl (↓)(↓)(↓)===//
-
     @Singleton
     @Provides
     fun provideRepository(
